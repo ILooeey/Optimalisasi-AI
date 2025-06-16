@@ -110,6 +110,62 @@
     .gcal-link:hover {
       background-color: #2c8c47;
     }
+    
+
+    header {
+      width: 100%;
+      background-color: #1a1a1a;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 8px 14px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      background-color: #333;
+    }
+
+  </style>
+<header>
+  <nav class="navbar">
+    <div class="logo">Help.U</div>
+    <ul class="nav-links">
+      <li><a href="index.php">Beranda</a></li>
+      <li><a href="index.php#regenerate-section">Regenerate</a></li>
+      <li><a href="kalender.php">Kalender Konten</a></li>
+    </ul>
+  </nav>
+</header>
   </style>
 
 <body>
