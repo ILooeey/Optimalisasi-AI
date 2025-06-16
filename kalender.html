@@ -15,6 +15,10 @@
       background: #f0f2f5;
     }
 
+    #header-placeholder {
+      width: 100%;
+    }
+
     .main-container {
       max-width: 1200px;
       margin: auto;
@@ -110,57 +114,13 @@
     .gcal-link:hover {
       background-color: #2c8c47;
     }
-    
-
-    header {
-      width: 100%;
-      background-color: #1a1a1a;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .navbar {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      color: white;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-
-    .nav-links li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      padding: 8px 14px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    .nav-links li a:hover {
-      background-color: #333;
-    }
-
   </style>
 </head>
 
 <body>
 
-
+  <!-- Placeholder untuk header -->
+  <div id="header-placeholder"></div>
 
   <div class="main-container">
     <h1>Kalender Konten</h1>
@@ -177,12 +137,14 @@
   </div>
 
   <script>
+    // Load header.html
     fetch('header.html')
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById('header-placeholder').innerHTML = data;
-  });
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
 
+    // Logika Form Kalender
     document.getElementById('kontenForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
