@@ -170,16 +170,7 @@
 
 <body>
 
-  <header>
-    <nav class="navbar">
-      <div class="logo">Help.U</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="index.html#regenerate-section">Regenerate</a></li>
-        <li><a href="kalender.html">Kalender Konten</a></li>
-      </ul>
-    </nav>
-  </header>
+
 
   <div class="main-container">
     <h1>Kalender Konten</h1>
@@ -196,6 +187,12 @@
   </div>
 
   <script>
+    fetch('header.html')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('header-placeholder').innerHTML = data;
+  });
+
     document.getElementById('kontenForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
