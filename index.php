@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Help.U</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    .container {
+      background-color: #fff;
+      width: 500px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-left: 5px solid #4CAF50;
+      border-radius: 6px;
+      font-size: 16px;
+      color: #333;
+      display: none;
+      transition: all 0.3s ease;
+    }
+    .container {
+      margin: 100px auto;
+    } 
+
+</style>
+</head>
+    
+<body>
+  <?php include 'header.html'; ?>
+  <?php include 'konten.html'; ?>
+
+
+  <div id="beranda-placeholder"></div>
+
+  <div class="container" id="regenerate-section">
+    <h2>Regenerasi Caption</h2>
+
+    <label for="captionInput">Masukkan Kata atau Kalimat Awal Anda:</label>
+    <input type="text" id="captionInput" placeholder="Contoh: Hari ini sangat cerah">
+
+    <button onclick="regenerate()">Regenerasi</button>
+
+    <div class="result" id="outputBox"></div>
+  </div>
+
+  <script>
+    async function regenerate() {
+      const input = document.getElementById("captionInput").value.trim();
+      const outputBox = document.getElementById("outputBox");
+
+      if (!input) {
+        outputBox.style.display = "block";
+        outputBox.innerText = "❗ Silakan masukkan caption terlebih dahulu.";
+        return;
+      }
+
+      outputBox.style.display = "block";
+      outputBox.innerText = "⏳ Sedang memproses...";
+
+      try {
+          const response = await fetch('http://localhost:3000/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: `Tolong buat ulang caption berikut agar lebih menarik: "${input}"`
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Server mengembalikan status ${response.status}`);
+        }
+
+        const data = await response.json();
+        outputBox.innerText = data.reply || "⚠️ Tidak ada respons dari server.";
+      } catch (error) {
+        outputBox.innerText = "❌ Terjadi kesalahan saat menghubungi server.";
+        console.error("Error:", error);
+      }
+    }
+  </script>
+
+</body>
+</html>
