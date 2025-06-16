@@ -140,21 +140,33 @@
   <?php include 'header.html'; ?>
   <?php include 'konten.html'; ?>
 
+  <div id="konten-placeholder"></div>
 
-  <div id="beranda-placeholder"></div>
-
+  <!-- Konten utama -->
   <div class="container" id="regenerate-section">
     <h2>Regenerasi Caption</h2>
-
     <label for="captionInput">Masukkan Kata atau Kalimat Awal Anda:</label>
     <input type="text" id="captionInput" placeholder="Contoh: Hari ini sangat cerah">
-
     <button onclick="regenerate()">Regenerasi</button>
-
     <div class="result" id="outputBox"></div>
   </div>
 
   <script>
+    // Menyisipkan header.html
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+
+    // Menyisipkan konten.html
+    fetch('konten.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('konten-placeholder').innerHTML = data;
+      });
+
+    // Fungsi Regenerasi
     async function regenerate() {
       const input = document.getElementById("captionInput").value.trim();
       const outputBox = document.getElementById("outputBox");
@@ -169,17 +181,13 @@
       outputBox.innerText = "⏳ Sedang memproses...";
 
       try {
-          const response = await fetch('http://localhost:3000/chat', {
+        const response = await fetch('http://localhost:3000/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             message: `Tolong buat ulang caption berikut agar lebih menarik: "${input}"`
           })
         });
-
-        if (!response.ok) {
-          throw new Error(`Server mengembalikan status ${response.status}`);
-        }
 
         const data = await response.json();
         outputBox.innerText = data.reply || "⚠️ Tidak ada respons dari server.";
@@ -189,6 +197,19 @@
       }
     }
   </script>
-
 </body>
 </html>
+🔁 2. Buat header.html
+html
+Copy
+Edit
+<header>
+  <nav class="navbar">
+    <div class="logo" style="color: white; font-size: 1.8rem; font-weight: bold;">Help.U</div>
+    <ul class="nav-links" style="list-style: none; display: flex; gap: 25px;">
+      <li><a href="index.html" style="color: white; text-decoration: none;">Beranda</a></li>
+      <li><a href="index.html#regenerate-section" style="color: white; text-decoration: none;">Regenerate</a></li>
+      <li><a href="kalender.html" style="color: white; text-decoration: none;">Kalender Konten</a></li>
+    </ul>
+  </nav>
+</header>
