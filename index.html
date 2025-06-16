@@ -14,15 +14,13 @@
     body {
       font-family: 'Arial', sans-serif;
       background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
     }
-
 
     .container {
       background-color: #fff;
       width: 500px;
       padding: 30px;
+      margin: 100px auto;
       border-radius: 10px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
@@ -76,73 +74,15 @@
       display: none;
       transition: all 0.3s ease;
     }
-    .container {
-      margin: 100px auto;
-    } 
-
-
-    header {
-      width: 100%;
-      background-color: #1a1a1a;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .navbar {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      color: white;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-
-    .nav-links li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      padding: 8px 14px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    .nav-links li a:hover {
-      background-color: #333;
-    }
-
   </style>
-<header>
-  <nav class="navbar">
-    <div class="logo">Help.U</div>
-    <ul class="nav-links">
-      <li><a href="index.php">Beranda</a></li>
-      <li><a href="index.php#regenerate-section">Regenerate</a></li>
-      <li><a href="kalender.php">Kalender Konten</a></li>
-    </ul>
-  </nav>
-</header>
-    
+</head>
 <body>
-  <?php include 'header.html'; ?>
-  <?php include 'konten.html'; ?>
+  <div id="header-placeholder"></div>
 
+  <!-- konten dinamis dari konten.html -->
   <div id="konten-placeholder"></div>
 
-  <!-- Konten utama -->
+  <!-- form utama -->
   <div class="container" id="regenerate-section">
     <h2>Regenerasi Caption</h2>
     <label for="captionInput">Masukkan Kata atau Kalimat Awal Anda:</label>
@@ -152,14 +92,14 @@
   </div>
 
   <script>
-    // Menyisipkan header.html
+    // Load header.html
     fetch('header.html')
       .then(response => response.text())
       .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
       });
 
-    // Menyisipkan konten.html
+    // Load konten.html
     fetch('konten.html')
       .then(response => response.text())
       .then(data => {
@@ -199,17 +139,3 @@
   </script>
 </body>
 </html>
-🔁 2. Buat header.html
-html
-Copy
-Edit
-<header>
-  <nav class="navbar">
-    <div class="logo" style="color: white; font-size: 1.8rem; font-weight: bold;">Help.U</div>
-    <ul class="nav-links" style="list-style: none; display: flex; gap: 25px;">
-      <li><a href="index.html" style="color: white; text-decoration: none;">Beranda</a></li>
-      <li><a href="index.html#regenerate-section" style="color: white; text-decoration: none;">Regenerate</a></li>
-      <li><a href="kalender.html" style="color: white; text-decoration: none;">Kalender Konten</a></li>
-    </ul>
-  </nav>
-</header>
