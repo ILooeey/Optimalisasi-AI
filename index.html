@@ -77,16 +77,7 @@
   </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <div class="logo">Help.U</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="index.html#regenerate-section">Regenerate</a></li>
-        <li><a href="kalender.html">Kalender Konten</a></li>
-      </ul>
-    </nav>
-  </header>
+
   <div id="header-placeholder"></div>
 
   <!-- konten dinamis dari konten.html -->
@@ -102,6 +93,13 @@
   </div>
 
   <script>
+    // Load header.html
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+
     // Load konten.html
     fetch('konten.html')
       .then(response => response.text())
@@ -142,3 +140,6 @@
   </script>
 </body>
 </html>
+
+
+kok navbarnya double
